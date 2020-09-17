@@ -1,14 +1,14 @@
 # banner
 banner:
-  title : "Hi! I’m <br> Christoher <br> UX designer"
+  title : "Hi! I’m <br> Alessandro aka Alex <br> A Master's Student"
 
 # about
 about:
   enable : true
-  content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  content : "Hello stranger! <br> Thanks for checking out my website, if you want a brief run-down of my life, feel free to scroll down, however, click on the button bellow to read more about me."
   button:
     enable : true
-    label : "know more"
+    label : "Click to Know More"
     URL : "about"
 
 # skill
@@ -16,62 +16,54 @@ skill:
   enable : true
   title : "Skills"
   item:
-    - title : "Web Design"
+    - title : "Team Player"
       progress : "90%"
       color : "#fdb157"
       
-    - title : "Logo Design"
+    - title : "Communication"
       progress : "60%"
       color : "#9473e6"
       
-    - title : "After Effects"
+    - title : "Motivation"
       progress : "80%"
       color : "#bdecf6"
       
-    - title : "Web App"
-      progress : "70%"
+    - title : "R Skills"
+      progress : "20%"
       color : "#ffbcaa"
 
 # experience
 experience:
   enable : true
-  title : "Experience"
+  title : "Work Experience"
   item: 
     - logo : "images/experience/icon-1.png"
-      title : "Junior UX Designer"
-      company : "WEBEX"
-      duration : "Jan 2007 - Feb 2009"
+        title : "Treasury Department Intern"
+      company : "Banco de Negocios EBN, Madrid"
+      duration : "June 2019 - July 2020"
       
     - logo : "images/experience/icon-2.png"
-      title : "UX & UI Designer"
-      company : "AUGMEDIX"
-      duration : "Mar 2009 - Aug 2014"
+      title : "Pro Bono Strategy Consultant"
+      company : "First Step Consulting, London"
+      duration : "February 2019 - May 2019"
       
     - logo : "images/experience/icon-1.png"
-      title : "Senior UI Designer"
-      company : "THEMEFISHER"
-      duration : "Sep 2014 - Present"
+      title : "Digital Enablement Summer Intern"
+      company : "EY, Luxembourg"
+      duration : "June 2018 - July 2019"
 
 # education
 education:
   enable : true
   title : "Education"
   item:
-    - title : "Marters in UX Design"
-      year : "2006"
-      academy : "Masassusets Institute of Technology"
+    - title : "Masters in Analytics and Management"
+      year : "2021"
+      academy : "London Business School"
       
-    - title : "Honours in Fine Arts"
-      year : "2004"
-      academy : "Harvard University"
-      
-    - title : "Higher Secondary Certificat"
-      year : "2000"
-      academy : "Cardiff School"
-      
-    - title : "Secondary School Certificate"
-      year : "1998"
-      academy : "Cardiff School"
+    - title : "BSc in Finance (Hons)"
+      year : "2020"
+      academy : "Cass Buisness School"
 
 # service
 service:
