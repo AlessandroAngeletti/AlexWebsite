@@ -3,11 +3,9 @@ author_image: images/about/author.jpg
 author_signature: images/about/signature.png
 description: This is meta description.
 draft: false
-title: About
+title: About Me
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Taking correct decisions is always hard and often requires us to learn both new hard and soft skills. Thankfully, I’m a life long learner with a thing for tough challenges!
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-
-Deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia.
+Having recently completed my undergraduate degree in Finance, I have embarked on a journey of a lifetime at LBS to attain a Masters in Analytics and Management where I hope to bridge the gap between the world of finance and data analytics. This unique combination of backgrounds is actively equipping me with an extensive set of tools which enable me to extract valuable financial insight from data sets whom to most just seem like noise. Hence, removing any element of gut feeling from the process of decision making.

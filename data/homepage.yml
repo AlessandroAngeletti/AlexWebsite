@@ -38,7 +38,7 @@ experience:
   title : "Work Experience"
   item: 
     - logo : "images/experience/icon-1.png"
-        title : "Treasury Department Intern"
+      title : "Treasury Department Intern"
       company : "Banco de Negocios EBN, Madrid"
       duration : "June 2019 - July 2020"
       
@@ -68,21 +68,21 @@ education:
 # service
 service:
   enable : true
-  title : "Services"
+  title : "Sectors of Interest"
   item:
-    - title : "UI Design"
-      icon : "ti-palette"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    - title : "Consulting"
+      icon : "ti-direction-alt"
+      content : "Seeking firms based in: Spain, UAE or Italy"
       highlighted : false
 
-    - title : "UX Design"
-      icon : "ti-vector"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    - title : "Telecommunications"
+      icon : "ti-signal"
+      content : "Seeking firms based in: United Kingdom or Europe"
       highlighted : true
 
-    - title : "Interaction Design"
-      icon : "ti-panel"
-      content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    - title : "Energy"
+      icon : "ti-bolt"
+      content : "Seeking firms based in: United Kingdom or Europe"
       highlighted : false
 
 # portfolio
@@ -94,7 +94,7 @@ portfolio:
 
 # testimonial
 testimonial:
-  enable : true
+  enable : false
   title : "Testimonials"
   item:
     - name : "Jesica Gomez"
@@ -114,7 +114,7 @@ testimonial:
 
 # client logo slider
 clients_logo_slider:
-  enable : true
+  enable : false
   item:
     - logo : "images/clients-logo/client-logo-1.png"
       URL : "http://examplesite.com"
@@ -148,6 +148,6 @@ clients_logo_slider:
 
 # blog
 blog:
-  enable : true
+  enable : false
   title : "Blogs"
   # blog post comes from "content/blog" folder
