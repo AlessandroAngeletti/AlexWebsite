@@ -30,13 +30,13 @@ library(vroom)
 library(ggrepel)
 ```
 
-# Challenge 1: CDC COVID-19 Public Use Data
+# CDC COVID-19 Public Use Data
 
 Please note that all data had been obtained from the [CDC Covid-19 Case Surveillance Data File](https://data.cdc.gov/Case-Surveillance/COVID-19-Case-Surveillance-Public-Use-Data/vbim-akqf).
 There are well over 3 million entries of individual, de-identified patient data.
 
 
-```{r, cache=TRUE, echo=FALSE}
+```{r, cache=TRUE, echo=FALSE, warning=FALSE}
 
 url <- "https://data.cdc.gov/api/views/vbim-akqf/rows.csv?accessType=DOWNLOAD"
 
