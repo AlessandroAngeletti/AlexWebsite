@@ -52,7 +52,7 @@ library(kableExtra)
 
 > To study climate change, we found data on the Combined Land-Surface Air and Sea-Surface Water Temperature Anomalies in the Northern Hemisphere at NASA's Goddard Institute for Space Studies. 
 
-The first step was to import the messy **data** which can be seen below
+The first step was to import the messy data which can be seen below
 
 ```{r weather_data, cache=TRUE, echo=FALSE}
 #We ran the code below to load the file:
@@ -63,7 +63,7 @@ weather <- read_csv("https://data.giss.nasa.gov/gistemp/tabledata_v3/NH.Ts+dSST.
 weather
 ```
 
-Next, we **cleaned** the dataset - discarded unwanted columns and converted the wide format to a long format.
+Next, we cleaned the dataset - discarded unwanted columns and converted the wide format to a long format.
 
 ```{r tidyweather, echo=FALSE}
 # dropping columns we don't need
