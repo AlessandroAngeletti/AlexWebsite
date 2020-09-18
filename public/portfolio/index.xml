@@ -8,6 +8,15 @@
     <language>en-us</language>
     <lastBuildDate>Fri, 18 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="/portfolio/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>COVID-19 Statistics</title>
+      <link>/portfolio/covid/</link>
+      <pubDate>Fri, 18 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/covid/</guid>
+      <description>Challenge 1: CDC COVID-19 Public Use DataLet us revisit the CDC Covid-19 Case Surveillance Data.</description>
+    </item>
+    
+    <item>
       <title>IMBD Movies</title>
       <link>/portfolio/imbd/</link>
       <pubDate>Fri, 18 Sep 2020 00:00:00 +0000</pubDate>
