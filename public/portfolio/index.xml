@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>Trump</title>
+      <link>/portfolio/trump/</link>
+      <pubDate>Fri, 18 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/trump/</guid>
+      <description>Trump’s Approval Margins# Import approval polls dataapproval_polllist &amp;lt;- read_csv(here::here(&amp;#39;csv&amp;#39;, &amp;#39;approval_polllist.</description>
+    </item>
+    
+    <item>
       <title>Weather Anomalies Study</title>
       <link>/portfolio/weather/</link>
       <pubDate>Fri, 18 Sep 2020 00:00:00 +0000</pubDate>
