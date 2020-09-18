@@ -20,8 +20,7 @@ image: images/portfolio/elections.jpg
 
 <div id="trumps-approval-margins" class="section level1">
 <h1>Trump’s Approval Margins</h1>
-<pre class="r"><code># Import approval polls data
-approval_polllist &lt;- read_csv(here::here(&#39;csv&#39;, &#39;approval_polllist.csv&#39;))</code></pre>
+<p>We start by importing the data files and cleaning them up ahead of our analysis.</p>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   .default = col_character(),
@@ -37,37 +36,6 @@ approval_polllist &lt;- read_csv(here::here(&#39;csv&#39;, &#39;approval_polllis
 ##   question_id = col_double()
 ## )</code></pre>
 <pre><code>## See spec(...) for full column specifications.</code></pre>
-<pre class="r"><code># Quickly view data set.
-glimpse(approval_polllist)</code></pre>
-<pre><code>## Rows: 14,533
-## Columns: 22
-## $ president           &lt;chr&gt; &quot;Donald Trump&quot;, &quot;Donald Trump&quot;, &quot;Donald Trump&quot;,...
-## $ subgroup            &lt;chr&gt; &quot;All polls&quot;, &quot;All polls&quot;, &quot;All polls&quot;, &quot;All pol...
-## $ modeldate           &lt;chr&gt; &quot;8/29/2020&quot;, &quot;8/29/2020&quot;, &quot;8/29/2020&quot;, &quot;8/29/20...
-## $ startdate           &lt;chr&gt; &quot;1/20/2017&quot;, &quot;1/20/2017&quot;, &quot;1/20/2017&quot;, &quot;1/21/20...
-## $ enddate             &lt;chr&gt; &quot;1/22/2017&quot;, &quot;1/22/2017&quot;, &quot;1/24/2017&quot;, &quot;1/23/20...
-## $ pollster            &lt;chr&gt; &quot;Gallup&quot;, &quot;Morning Consult&quot;, &quot;Ipsos&quot;, &quot;Gallup&quot;,...
-## $ grade               &lt;chr&gt; &quot;B&quot;, &quot;B/C&quot;, &quot;B-&quot;, &quot;B&quot;, &quot;B&quot;, &quot;C+&quot;, &quot;B-&quot;, &quot;B+&quot;, &quot;...
-## $ samplesize          &lt;dbl&gt; 1500, 1992, 1632, 1500, 1500, 1500, 1651, 1190,...
-## $ population          &lt;chr&gt; &quot;a&quot;, &quot;rv&quot;, &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;lv&quot;, &quot;a&quot;, &quot;rv&quot;, &quot;a&quot;,...
-## $ weight              &lt;dbl&gt; 0.2623230, 0.6800286, 0.1534812, 0.2428446, 0.2...
-## $ influence           &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...
-## $ approve             &lt;dbl&gt; 45.0, 46.0, 42.1, 45.0, 46.0, 57.0, 42.3, 36.0,...
-## $ disapprove          &lt;dbl&gt; 45.0, 37.0, 45.2, 46.0, 45.0, 43.0, 45.8, 44.0,...
-## $ adjusted_approve    &lt;dbl&gt; 45.76564, 45.25344, 43.19663, 45.76564, 46.7656...
-## $ adjusted_disapprove &lt;dbl&gt; 43.59024, 37.81295, 43.85560, 44.59024, 43.5902...
-## $ multiversions       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ tracking            &lt;lgl&gt; TRUE, NA, TRUE, TRUE, TRUE, TRUE, TRUE, NA, NA,...
-## $ url                 &lt;chr&gt; &quot;http://www.gallup.com/poll/201617/gallup-daily...
-## $ poll_id             &lt;dbl&gt; 49253, 49249, 49426, 49262, 49236, 49266, 49425...
-## $ question_id         &lt;dbl&gt; 77265, 77261, 77599, 77274, 77248, 77278, 77598...
-## $ createddate         &lt;chr&gt; &quot;1/23/2017&quot;, &quot;1/23/2017&quot;, &quot;3/1/2017&quot;, &quot;1/24/201...
-## $ timestamp           &lt;chr&gt; &quot;13:38:37 29 Aug 2020&quot;, &quot;13:38:37 29 Aug 2020&quot;,...</code></pre>
-<pre class="r"><code># Data set cleaned.
-approval_polllist_clean &lt;- approval_polllist %&gt;%
-    select(c(enddate, samplesize, adjusted_approve, adjusted_disapprove)) %&gt;% 
-    mutate(approval_difference = adjusted_approve - adjusted_disapprove)
-approval_polllist_clean</code></pre>
 <pre><code>## # A tibble: 14,533 x 5
 ##    enddate   samplesize adjusted_approve adjusted_disapprove approval_difference
 ##    &lt;chr&gt;          &lt;dbl&gt;            &lt;dbl&gt;               &lt;dbl&gt;               &lt;dbl&gt;
@@ -82,26 +50,12 @@ approval_polllist_clean</code></pre>
 ##  9 1/25/2017       2692             41.9                36.9               4.99 
 ## 10 1/26/2017       1678             43.7                45.1              -1.36 
 ## # ... with 14,523 more rows</code></pre>
-<pre class="r"><code># Use `lubridate` to fix dates, as they are given as characters.</code></pre>
 <div id="create-a-plot" class="section level2">
 <h2>Create a plot</h2>
+<blockquote>
 <p>The Average net approval rating of Trump along with the 95% confidence intervals are calculated below.</p>
-<pre class="r"><code># The data set of approval ratings are cleaned along with finding the confidence intervals.
-Trump_Approval &lt;- approval_polllist_clean %&gt;%
-  mutate(enddate = mdy(enddate),
-         year = year(enddate),
-         week = week(enddate)
-         ) %&gt;%
-  group_by(year, week) %&gt;% 
-        summarise(Weekly_difference = sum(approval_difference),
-                  avg_difference = mean(approval_difference),
-                  se_Trump = sd(approval_difference)/sqrt(n()),
-                  t_crit = qt(0.975, n() - 1),
-                  lower_CIs = (avg_difference - t_crit * se_Trump),
-                  upper_CIs = (avg_difference + t_crit * se_Trump)
-                  )</code></pre>
+</blockquote>
 <pre><code>## `summarise()` regrouping output by &#39;year&#39; (override with `.groups` argument)</code></pre>
-<pre class="r"><code>Trump_Approval</code></pre>
 <pre><code>## # A tibble: 191 x 8
 ## # Groups:   year [4]
 ##     year  week Weekly_differen~ avg_difference se_Trump t_crit lower_CIs
@@ -117,30 +71,10 @@ Trump_Approval &lt;- approval_polllist_clean %&gt;%
 ##  9  2017    12           -636.           -7.57    0.754   1.99   -9.07  
 ## 10  2017    13          -1060.          -11.6     0.726   1.99  -13.1   
 ## # ... with 181 more rows, and 1 more variable: upper_CIs &lt;dbl&gt;</code></pre>
-<pre class="r"><code># The approval plot is created along with the confidence intervals.
-Approval_Plot &lt;- Trump_Approval %&gt;%
-  ggplot(aes(x = week, y = avg_difference)) +
-  geom_ribbon(mapping = aes(ymin = lower_CIs, ymax = upper_CIs), alpha = 0.3)+
-  geom_line() +
-  geom_point() +
-  facet_wrap(~ year) +
-  geom_hline(mapping = aes(yintercept = 0), color = &quot;orange&quot;) +
-  theme(legend.position = &quot;none&quot;,
-        panel.background = element_rect(&quot;white&quot;, &quot;black&quot;),
-        panel.grid.major = element_line(&quot;light grey&quot;),
-        panel.grid.minor = element_line(&quot;light grey&quot;)
-        ) +
-  labs (
-    title = &quot;Estimate Net Approval (approve-disaprove) for Donald Trump&quot;,
-    subtitle = &quot;Weekly average of all polls&quot;,
-    y = &quot;Average Net Approval (%)&quot;,
-    x = &quot;Week of the year&quot;
-  ) +
-  expand_limits(x = c(0, 52), y = 7.5) +
-  NULL
-
-Approval_Plot</code></pre>
-<p><img src="/portfolio/Trump_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<blockquote>
+<p>Now that we had all the data we need, lets complete our plots!</p>
+</blockquote>
+<p><img src="/portfolio/Trump_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="compare-confidence-intervals" class="section level2">
 <h2>Compare Confidence Intervals</h2>

@@ -31,7 +31,7 @@
       <pubDate>Fri, 18 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>/portfolio/trump/</guid>
-      <description>Trump’s Approval Margins# Import approval polls dataapproval_polllist &amp;lt;- read_csv(here::here(&amp;#39;csv&amp;#39;, &amp;#39;approval_polllist.</description>
+      <description>Trump’s Approval MarginsWe start by importing the data files and cleaning them up ahead of our analysis.</description>
     </item>
     
     <item>

@@ -32,12 +32,14 @@ library(vroom)
 
 # Trump's Approval Margins
 
-```{r, cache=TRUE}
+We start by importing the data files and cleaning them up ahead of our analysis.    
+
+```{r, cache=TRUE, echo=FALSE}
 # Import approval polls data
 approval_polllist <- read_csv(here::here('csv', 'approval_polllist.csv'))
 
 # Quickly view data set.
-glimpse(approval_polllist)
+# glimpse(approval_polllist)
 
 # Data set cleaned.
 approval_polllist_clean <- approval_polllist %>%
@@ -50,9 +52,9 @@ approval_polllist_clean
 
 ## Create a plot
 
-The Average net approval rating of Trump along with the 95% confidence intervals are calculated below.
+> The Average net approval rating of Trump along with the 95% confidence intervals are calculated below.
 
-```{r}
+```{r, echo = FALSE}
 # The data set of approval ratings are cleaned along with finding the confidence intervals.
 Trump_Approval <- approval_polllist_clean %>%
   mutate(enddate = mdy(enddate),
@@ -68,7 +70,11 @@ Trump_Approval <- approval_polllist_clean %>%
                   upper_CIs = (avg_difference + t_crit * se_Trump)
                   )
 Trump_Approval
+```
 
+> Now that we had all the data we need, lets complete our plots!
+
+```{r, echo=FALSE}
 # The approval plot is created along with the confidence intervals.
 Approval_Plot <- Trump_Approval %>%
   ggplot(aes(x = week, y = avg_difference)) +
