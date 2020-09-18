@@ -140,10 +140,8 @@
 
 <div id="challenge-1-cdc-covid-19-public-use-data" class="section level1">
 <h1>Challenge 1: CDC COVID-19 Public Use Data</h1>
-<p>Let us revisit the <a href="https://data.cdc.gov/Case-Surveillance/COVID-19-Case-Surveillance-Public-Use-Data/vbim-akqf">CDC Covid-19 Case Surveillance Data</a>. There are well over 3 million entries of individual, de-identified patient data. Since this is a large file, I suggest you use <code>vroom</code> to load it and you keep <code>cache=TRUE</code> in the chunk options.</p>
-<pre class="r"><code>url &lt;- &quot;https://data.cdc.gov/api/views/vbim-akqf/rows.csv?accessType=DOWNLOAD&quot;
-
-covid_data &lt;- vroom(url)</code></pre>
+<p>Please note that all data had been obtained from the <a href="https://data.cdc.gov/Case-Surveillance/COVID-19-Case-Surveillance-Public-Use-Data/vbim-akqf">CDC Covid-19 Case Surveillance Data File</a>.
+There are well over 3 million entries of individual, de-identified patient data.</p>
 <pre><code>## Rows: 3,662,325
 ## Columns: 11
 ## Delimiter: &quot;,&quot;
@@ -152,61 +150,9 @@ covid_data &lt;- vroom(url)</code></pre>
 ## 
 ## Use `spec()` to retrieve the guessed column specification
 ## Pass a specification to the `col_types` argument to quiet this message</code></pre>
-<pre class="r"><code>covid_co_morbidities &lt;- covid_data %&gt;%
-  select(current_status, sex, age_group, icu_yn, medcond_yn, death_yn) %&gt;%
-  filter(sex == &quot;Female&quot; | sex == &quot;Male&quot;) %&gt;%
-  filter(age_group != &quot;Unknown&quot;) %&gt;%
-  filter(medcond_yn == &quot;Yes&quot; | medcond_yn == &quot;No&quot;) %&gt;%
-  filter(death_yn %in% c(&quot;Yes&quot;, &quot;No&quot;)) %&gt;% 
-  mutate(co_morbidities = case_when(
-    medcond_yn == &quot;Yes&quot; ~ &quot;With comorbidities&quot;,
-    medcond_yn == &quot;No&quot; ~ &quot;Without comorbidities&quot;,
-    TRUE ~ as.character(NA_real_)))
-
-covid_comorb &lt;- covid_co_morbidities %&gt;% 
-  group_by(age_group, sex, co_morbidities, death_yn) %&gt;% 
-  summarise(count = n()) %&gt;% 
-  mutate(proportion_co = 100 * count/(sum(count))) %&gt;% 
-  filter(death_yn == &quot;Yes&quot;)</code></pre>
 <pre><code>## `summarise()` regrouping output by &#39;age_group&#39;, &#39;sex&#39;, &#39;co_morbidities&#39; (override with `.groups` argument)</code></pre>
-<pre class="r"><code>comorb_plot &lt;- ggplot(data = covid_comorb, mapping = aes( x = proportion_co, y = age_group, label = sprintf(&quot;%0.2f&quot;, round(proportion_co, digits = 1)))) +
-  geom_col(fill = &quot;#6699cc&quot;) +
-  facet_grid(co_morbidities ~ sex) +
-  theme_bw() +
-  geom_text_repel(size = 3 , hjust = -0.05 , aes(label = round(proportion_co, digits = 1))) +
-  labs(subtitle = &quot;Covid death % by age group, sex and presence of co-morbidities&quot;, 
-       x = &quot;&quot;, y = &quot;&quot;, caption = &quot;Source: CDC&quot;) +
-  xlim(0,72)
-
-comorb_plot</code></pre>
 <p><img src="/portfolio/COVID_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<pre class="r"><code>covid_icu &lt;- covid_data %&gt;%
-  select(current_status, sex, age_group, icu_yn, medcond_yn, death_yn) %&gt;%
-  filter(sex == &quot;Female&quot; | sex == &quot;Male&quot;) %&gt;%
-  filter(age_group != &quot;Unknown&quot;) %&gt;%
-  filter(icu_yn == &quot;Yes&quot; | icu_yn == &quot;No&quot;) %&gt;%
-  filter(death_yn %in% c(&quot;Yes&quot;, &quot;No&quot;)) %&gt;% 
-  mutate(icu = case_when(
-    icu_yn == &quot;Yes&quot; ~ &quot;Admitted to ICU&quot;,
-    icu_yn == &quot;No&quot; ~ &quot;No ICU&quot;,
-    TRUE ~ as.character(NA_real_)))
-
-covid_icu_final &lt;- covid_icu %&gt;% 
-  group_by(age_group, sex, icu, death_yn) %&gt;% 
-  summarise(count = n()) %&gt;% 
-  mutate(proportion_icu = 100 * count/(sum(count))) %&gt;% 
-  filter(death_yn == &quot;Yes&quot;)</code></pre>
 <pre><code>## `summarise()` regrouping output by &#39;age_group&#39;, &#39;sex&#39;, &#39;icu&#39; (override with `.groups` argument)</code></pre>
-<pre class="r"><code>icu_plot &lt;- ggplot(data = covid_icu_final, mapping = aes( x = proportion_icu, y = age_group)) +
-  geom_col(fill = &quot;#ff7f50&quot;) +
-  facet_grid(icu ~ sex) +
-  theme_bw() +
-  geom_text(size = 3 , hjust = -0.05 , aes(label = round(proportion_icu, digits = 1))) +
-  labs(subtitle = &quot;Covid death % by age group, sex and whether the patient was admitted to ICU&quot;, 
-       x = &quot;&quot;, y = &quot;&quot;, caption = &quot;Source: CDC&quot;) +
-  xlim(0,85)
-
-icu_plot</code></pre>
 <p><img src="/portfolio/COVID_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
 </div>
 </div>
