@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us"><head>
   <meta charset="utf-8">
-  <title>Categories</title>
+  <title>IMBD Movies</title>
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -82,12 +82,12 @@
   </nav>
 </header>
 
-  
+
 <section class="page-title bg-primary position-relative overflow-hidden">
   <div class="container">
     <div class="row">
       <div class="col-12 text-center">
-        <h1 class="text-white font-tertiary">Categories</h1>
+        <h1 class="text-white font-tertiary">IMBD Movies</h1>
       </div>
     </div>
   </div>
@@ -103,99 +103,98 @@
 
 
 
-  
-  <section class="section">
-    <div class="container">
-      <div class="row">
-        
-        <div class="col-lg-4 col-sm-6 mb-4">
-  <article class="card shadow">
-    <img class="rounded card-img-top" src="/" alt="Movie Analytics">
-    <div class="card-body">
-      <h4 class="card-title"><a class="text-dark" href="/categories/movie-analytics/">Movie Analytics</a>
-      </h4>
-      <p class="cars-text"></p>
-      <a href="/categories/movie-analytics/" class="btn btn-sm btn-primary">Read More</a>
-    </div>
-  </article>
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 mb-5">
+        <img src="/images/portfolio/movies.jpg" class="img-fluid w-100" alt="IMBD Movies">
+      </div>
+      <div class="col-lg-7 mb-5 mb-lg-0 align-self-center">
+        <div class="row mx-0">
+          <div class="col-sm-6 mb-5">
+            <div class="project-meta">
+              <i class="ti-calendar"></i>
+              <div class="ml-3">
+                <h4>Date</h4>
+                <p>Sep 18, 2020</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-sm-6 mb-5">
+            <div class="project-meta">
+              <i class="ti-folder"></i>
+              <div class="ml-3">
+                <h4>Categories</h4>
+                <p>Movie analytics</p>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <div class="col-lg-11">
+        <div class="content">
+
+
+<div id="imdb-ratings-differences-between-directors" class="section level1">
+<h1>IMDB ratings: Differences between directors</h1>
+<p>Here we wish to doa small experiment, we want to see whether the mean IMDB rating for Steven Spielberg and Tim Burton are the same or not by seeing if the confidence intervals overlap.</p>
+<div id="confidence-intervals" class="section level2">
+<h2>Confidence Intervals</h2>
+<pre><code>## # A tibble: 2 x 9
+##   director         mean    sd count    se t_critical margin_of_error lower upper
+##   &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Steven Spielbe~  7.57 0.695    23 0.145       2.07           0.301  7.27  7.87
+## 2 Tim Burton       6.93 0.749    16 0.187       2.13           0.399  6.53  7.33</code></pre>
+<p><img src="/portfolio/IMBD_files/figure-html/directors-1.png" width="100%" /></p>
 </div>
-        
-        <div class="col-lg-4 col-sm-6 mb-4">
-  <article class="card shadow">
-    <img class="rounded card-img-top" src="/" alt="Weather Analysis">
-    <div class="card-body">
-      <h4 class="card-title"><a class="text-dark" href="/categories/weather-analysis/">Weather Analysis</a>
-      </h4>
-      <p class="cars-text"></p>
-      <a href="/categories/weather-analysis/" class="btn btn-sm btn-primary">Read More</a>
-    </div>
-  </article>
+<div id="hypothesis-testing" class="section level2">
+<h2>Hypothesis Testing</h2>
+<p>After inspecting the confidence intervals, we conducted hypothesis testing using both the <code>t.test</code> command and the <code>infer</code> package to simulate from a null distribution, where we assumed zero difference between the two.</p>
+<p>First we noted down our null and alternative hypotheses:</p>
+<blockquote>
+<p><code>H0</code>: Spielberg’s and Burton’s means are statistically similar</p>
+<p><code>Ha</code>: Spielberg’s and Burton’s means are statistically dissimilar</p>
+</blockquote>
+<blockquote>
+<p>We can also write this as:</p>
+<p><code>H0</code>: mu_s - mu_b = 0</p>
+<p><code>Ha</code>: mu_s - mu_b != 0</p>
+</blockquote>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  rating by director
+## t = 2.7521, df = 37, p-value = 0.009119
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  0.169504 1.115822
+## sample estimates:
+## mean in group Steven Spielberg       mean in group Tim Burton 
+##                       7.573913                       6.931250</code></pre>
+<pre><code>## # A tibble: 1 x 1
+##    stat
+##   &lt;dbl&gt;
+## 1 0.643</code></pre>
+<p><img src="/portfolio/IMBD_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre><code>## # A tibble: 1 x 1
+##   p_value
+##     &lt;dbl&gt;
+## 1   0.007</code></pre>
+<blockquote>
+<p>Since our p-values are smaller than our alpha of 5%, we reject the null hypothesis in favor of the alternative hypothesis.
+Therefore, Spielberg’s mean IMBD rating is statistically different from Burton’s IMBD rating</p>
+</blockquote>
 </div>
-        
-        <div class="col-lg-4 col-sm-6 mb-4">
-  <article class="card shadow">
-    <img class="rounded card-img-top" src="/" alt="branding">
-    <div class="card-body">
-      <h4 class="card-title"><a class="text-dark" href="/categories/branding/">branding</a>
-      </h4>
-      <p class="cars-text"></p>
-      <a href="/categories/branding/" class="btn btn-sm btn-primary">Read More</a>
-    </div>
-  </article>
 </div>
-        
-        <div class="col-lg-4 col-sm-6 mb-4">
-  <article class="card shadow">
-    <img class="rounded card-img-top" src="/" alt="design">
-    <div class="card-body">
-      <h4 class="card-title"><a class="text-dark" href="/categories/design/">design</a>
-      </h4>
-      <p class="cars-text"></p>
-      <a href="/categories/design/" class="btn btn-sm btn-primary">Read More</a>
-    </div>
-  </article>
 </div>
-        
-        <div class="col-lg-4 col-sm-6 mb-4">
-  <article class="card shadow">
-    <img class="rounded card-img-top" src="/" alt="development">
-    <div class="card-body">
-      <h4 class="card-title"><a class="text-dark" href="/categories/development/">development</a>
-      </h4>
-      <p class="cars-text"></p>
-      <a href="/categories/development/" class="btn btn-sm btn-primary">Read More</a>
-    </div>
-  </article>
-</div>
-        
-        <div class="col-lg-4 col-sm-6 mb-4">
-  <article class="card shadow">
-    <img class="rounded card-img-top" src="/" alt="illustration">
-    <div class="card-body">
-      <h4 class="card-title"><a class="text-dark" href="/categories/illustration/">illustration</a>
-      </h4>
-      <p class="cars-text"></p>
-      <a href="/categories/illustration/" class="btn btn-sm btn-primary">Read More</a>
-    </div>
-  </article>
-</div>
-        
-        <div class="col-lg-4 col-sm-6 mb-4">
-  <article class="card shadow">
-    <img class="rounded card-img-top" src="/" alt="R">
-    <div class="card-body">
-      <h4 class="card-title"><a class="text-dark" href="/categories/r/">R</a>
-      </h4>
-      <p class="cars-text"></p>
-      <a href="/categories/r/" class="btn btn-sm btn-primary">Read More</a>
-    </div>
-  </article>
-</div>
-        
       </div>
     </div>
-  </section>
-  
+  </div>
+</section>
+
 
 
 
