@@ -1,0 +1,57 @@
+---
+title: "UBER Analytics"
+author: "Alessandro Angeletti"
+date: "2020-09-18"
+output:
+  html_document:
+    theme: flatly
+    highlight: zenburn
+    number_sections: yes
+    toc: yes
+    toc_float: yes
+    code_folding: hide
+categories:
+- Transport
+draft: false
+image: images/portfolio/UBER.jpg
+---
+
+```{r}
+library(ggplot2)
+library(ggthemes)
+library(lubridate)
+library(dplyr)
+library(tidyr)
+library(DT)
+library(scales)
+library(tidyverse)
+```
+
+The first step isto important all of the data.
+
+```{r, cache = TRUE, message = FALSE, echo = FALSE}
+colors = c("#CC1011", "#665555", "#05a399", "#cfcaca", "#f5e840", "#0683c9", "#e075b0")
+apr_data <- read_csv(here::here('csv', 'uber-raw-data-apr14.csv'))
+may_data <- read_csv(here::here('csv', "uber-raw-data-may14.csv"))
+jun_data <- read_csv(here::here('csv', "uber-raw-data-jun14.csv"))
+jul_data <- read_csv(here::here('csv', "uber-raw-data-jul14.csv"))
+aug_data <- read_csv(here::here('csv', "uber-raw-data-aug14.csv"))
+sep_data <- read_csv(here::here('csv', "uber-raw-data-sep14.csv"))
+```
+
+
+```{r}
+data_2014 <- rbind(apr_data,may_data, jun_data, jul_data, aug_data, sep_data)
+
+clean_data_2014 <- apr_data %>% 
+  mutate(
+    Year = format(as.Date(Date_Time, format = "%m/%d/%Y"), "%Y"),
+    Month = format(as.Date(Date_Time, format = "%m/%d/%Y"), "%m"),
+    Day = format(as.Date(Date_Time, format = "%m/%d/%Y"), "%d"),
+    Date = paste(Year, Month, Day, sep = "-"),
+    DayOfWeek = wday(Date, label = TRUE)
+  )
+
+clean_data_2014
+```
+

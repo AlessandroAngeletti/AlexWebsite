@@ -1,0 +1,18 @@
+---
+title: "UBER Analytics"
+author: "Alessandro Angeletti"
+date: "2020-09-18"
+output:
+  html_document:
+    theme: flatly
+    highlight: zenburn
+    number_sections: yes
+    toc: yes
+    toc_float: yes
+    code_folding: hide
+categories:
+- Transport
+draft: false
+image: images/portfolio/UBER.jpg
+---
+
