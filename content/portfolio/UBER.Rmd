@@ -16,7 +16,7 @@ draft: false
 image: images/portfolio/UBER.jpg
 ---
 
-```{r}
+```{r, echo=FALSE, message = FALSE}
 library(ggplot2)
 library(ggthemes)
 library(lubridate)
