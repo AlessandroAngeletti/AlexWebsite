@@ -123,7 +123,11 @@ ggplot(Day_and_Month, aes(DayOfWeek, Month, fill = Total)) +
 library(leaflet)
 library(leaflet.extras)
 
-leaflet(data = apr_data) %>% 
+set.seed(1234)
+plot_data <- data_2014 %>% 
+  sample_frac(0.1, replace = FALSE)
+
+leaflet(data = plot_data) %>% 
   
   addProviderTiles("OpenStreetMap.Mapnik") %>% 
   
