@@ -119,27 +119,27 @@ ggplot(Day_and_Month, aes(DayOfWeek, Month, fill = Total)) +
   ggtitle("Heat Map by Month and Day")
 ```
 
-```{r, cache=TRUE}
-library(leaflet)
-library(leaflet.extras)
-
-set.seed(1234)
-plot_data <- data_2014 %>% 
-  sample_frac(0.05, replace = FALSE)
-
-leaflet(data = plot_data) %>% 
-  
-  addProviderTiles("OpenStreetMap.Mapnik") %>% 
-  
-  addCircleMarkers(lng = ~Lon, 
-                   lat = ~Lat,
-                   clusterOptions = markerClusterOptions()
-                   ) %>% 
-  addHeatmap(lng = ~Lon, 
-             lat = ~Lat,
-             radius = 15,
-             blur = 40,
-             cellSize = 30
-             )
+```{r, cache=TRUE, echo  = FALSE}
+# library(leaflet)
+# library(leaflet.extras)
+# 
+# set.seed(1234)
+# plot_data <- data_2014 %>% 
+#   sample_frac(0.05, replace = FALSE)
+# 
+# leaflet(data = plot_data) %>% 
+#   
+#   addProviderTiles("OpenStreetMap.Mapnik") %>% 
+#   
+#   addCircleMarkers(lng = ~Lon, 
+#                    lat = ~Lat,
+#                    clusterOptions = markerClusterOptions()
+#                    ) %>% 
+#   addHeatmap(lng = ~Lon, 
+#              lat = ~Lat,
+#              radius = 15,
+#              blur = 40,
+#              cellSize = 30
+#              )
 ```
 
