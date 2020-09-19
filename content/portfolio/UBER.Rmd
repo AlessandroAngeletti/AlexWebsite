@@ -125,7 +125,7 @@ library(leaflet.extras)
 
 set.seed(1234)
 plot_data <- data_2014 %>% 
-  sample_frac(0.1, replace = FALSE)
+  sample_frac(0.05, replace = FALSE)
 
 leaflet(data = plot_data) %>% 
   
